@@ -139,7 +139,6 @@ class ProdutoController extends Controller
         // verifica se uma nova imagem foi encaminhada na requisição
         if($request->file('imagem') != ''){
 
-            // dd($produto->imagem);
             // remove o arquivo antigo caso tenho sido enviado um arquivo novo
             Storage::disk('public')->delete($imagem_bd);
             $imagem = $request->file('imagem');
