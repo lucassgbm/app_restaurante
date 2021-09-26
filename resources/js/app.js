@@ -24,6 +24,7 @@ Vue.component('home-component', require('./components/Home.vue').default);
 Vue.component('produtos-component', require('./components/produtos/Produtos.vue').default);
 Vue.component('adicionar-produto-component', require('./components/produtos/Adicionar.vue').default);
 Vue.component('editar-produto-component', require('./components/produtos/Editar.vue').default);
+Vue.component('alert-component', require('./components/Alerts.vue').default);
 
 
 /**

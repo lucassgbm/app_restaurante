@@ -47,6 +47,7 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         // validação de campos
         $request->validate($this->produto->rules(), $this->produto->feedback());
 
@@ -54,7 +55,7 @@ class ProdutoController extends Controller
         $imagem_urn = $imagem->store('imagens/produtos', 'public');
 
         $produto = $this->produto->create([
-            'nome_produto' => $request->nome,
+            'nome_produto' => $request->nome_produto,
             'imagem' => $imagem_urn,
             'qtd_estoque' => $request->qtd_estoque,
             'qtd_reposicao' => $request->qtd_reposicao,

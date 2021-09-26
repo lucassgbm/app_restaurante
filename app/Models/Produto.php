@@ -26,7 +26,13 @@ class Produto extends Model
     public function rules(){
         return [
             'nome_produto' => 'required|unique:produtos,nome_produto',
-            'imagem' => 'required|file|mimes:png,jpeg,jpg'
+            'imagem' => 'required|file|mimes:png,jpeg,jpg',
+            'qtd_estoque' => 'required|numeric',
+            'qtd_reposicao' => 'required|numeric',
+            'data_validade' => 'required',
+            'preco_unitario' => 'required|numeric',
+            'tipo_id' => 'required',
+            'fornecedor_id' => 'required',
         ];
     }
 
