@@ -130,18 +130,23 @@ class ProdutoController extends Controller
             $request->validate($produto->rules(), $produto->feedback());
         }
 
-        // remove o arquivo antigo caso tenho sido enviado um arquivo novo
-        if($request->file('imagem')){
-            Storage::disk('public')->delete($produto->imagem);
-        }
+        // imagem salva no banco
+        $imagem_bd = $produto->imagem;
 
-        // arquivo config/filesystems.php
-        $imagem = $request->file('imagem');
-        $imagem_urn = $imagem->store('imagens/produtos', 'public');
-
-        //preencher o objeto $produto com os dados do request
+        // preenche o objeto produto com todos os dados passados no request
         $produto->fill($request->all());
-        $produto->imagem = $imagem_urn;
+
+        // verifica se uma nova imagem foi encaminhada na requisição
+        if($request->file('imagem') != ''){
+
+            // dd($produto->imagem);
+            // remove o arquivo antigo caso tenho sido enviado um arquivo novo
+            Storage::disk('public')->delete($imagem_bd);
+            $imagem = $request->file('imagem');
+            $imagem_urn = $imagem->store('imagens/produtos', 'public');
+            $produto->imagem = $imagem_urn;
+
+        }
 
         $produto->save();
 
