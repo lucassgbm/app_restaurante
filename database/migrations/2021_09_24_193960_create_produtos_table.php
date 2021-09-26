@@ -23,7 +23,7 @@ class CreateProdutosTable extends Migration
             $table->string('nome_produto', 50)->unique();
             $table->string('imagem', 100);
             $table->float('qtd_estoque', 8, 2);
-            $table->float('qtd_reposicao', 8, 2);
+            $table->float('qtd_reposicao', 8, 2)->nullable();
             $table->dateTime('data_validade');
             $table->float('preco_unitario', 8, 2);
 

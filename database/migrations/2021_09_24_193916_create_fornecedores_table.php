@@ -18,9 +18,9 @@ class CreateFornecedoresTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string('nome_fornecedor', 50)->unique();
-            $table->string('site', 100);
-            $table->bigInteger('telefone');
-            $table->string('e-mail', 100);
+            $table->string('site')->nullable();
+            $table->bigInteger('telefone')->nullable();
+            $table->string('e-mail', 100)->nullable();
             
             
 
@@ -32,6 +32,7 @@ class CreateFornecedoresTable extends Migration
             [ 'nome_fornecedor' => 'Bread Maker' ],
             [ 'nome_fornecedor' => 'Coca-cola' ],
             [ 'nome_fornecedor' => 'Friboi' ],
+            
 
         ]);
     }
