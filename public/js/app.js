@@ -3767,6 +3767,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   data: function data() {
@@ -3799,6 +3804,10 @@ __webpack_require__.r(__webpack_exports__);
       this.arquivoImagem = e.target.files;
     },
     setStore: function setStore(obj) {
+      // apagar mensagens antigas ao acionar o modal:
+      this.$store.state.transacao.status = '';
+      this.$store.state.transacao.mensagem = '';
+      this.$store.state.transacao.dados = '';
       this.$store.state.item = obj;
       console.log(obj);
     },
@@ -3828,7 +3837,10 @@ __webpack_require__.r(__webpack_exports__);
         _this2.transacaoStatus = 'adicionado';
         _this2.transacaoDetalhes = {
           mensagem: 'ID do registro: ' + response.data.id
-        }; // console.log(response)
+        };
+
+        _this2.carregarLista(); // console.log(response)
+
       })["catch"](function (errors) {
         _this2.transacaoStatus = 'erro';
         _this2.transacaoDetalhes = {
@@ -3837,7 +3849,6 @@ __webpack_require__.r(__webpack_exports__);
         };
         errors.response; // console.log(data.message)
       });
-      this.carregarLista();
     },
     atualizar: function atualizar() {
       var _this3 = this;
@@ -3866,10 +3877,15 @@ __webpack_require__.r(__webpack_exports__);
       };
       axios.post(url, formData, config).then(function (response) {
         console.log('Atualizado', response);
+        _this3.$store.state.transacao.status = 'sucesso';
+        _this3.$store.state.transacao.mensagem = 'Produto atualizado com sucesso!';
 
         _this3.carregarLista();
       })["catch"](function (errors) {
         console.log('Erro de atualização', errors.response);
+        _this3.$store.state.transacao.status = 'erro';
+        _this3.$store.state.transacao.mensagem = errors.response.data.message;
+        _this3.$store.state.transacao.dados = errors.response.data.errors;
       });
     },
     remover: function remover() {
@@ -3888,11 +3904,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       };
       axios.post(url, formData, config).then(function (response) {
-        console.log('Registro removido com sucesso', response);
+        _this4.$store.state.transacao.status = 'sucesso';
+        _this4.$store.state.transacao.mensagem = response.data.msg;
 
         _this4.carregarLista();
       })["catch"](function (errors) {
-        console.log('Houve um erro ao excluir o registro', errors.response);
+        _this4.$store.state.transacao.status = 'erro';
+        _this4.$store.state.transacao.mensagem = errors.response.data.erro;
       });
     }
   },
@@ -3932,7 +3950,12 @@ Importação e configuração do vuex:
 Vue.use(Vuex__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var store = new Vuex__WEBPACK_IMPORTED_MODULE_0__["default"].Store({
   state: {
-    item: {}
+    item: {},
+    transacao: {
+      status: '',
+      mensagem: '',
+      dados: ''
+    }
   }
 });
 /**
@@ -40710,13 +40733,42 @@ var render = function() {
               _c("div", { staticClass: "modal-content" }, [
                 _vm._m(4),
                 _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _vm._v(
-                    "\n        Deseja excluir - " +
-                      _vm._s(_vm.$store.state.item.nome_produto) +
-                      "?\n      "
-                  )
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "modal-body" },
+                  [
+                    _vm.$store.state.transacao.status == "sucesso"
+                      ? _c("alert-component", {
+                          attrs: {
+                            tipo: "success",
+                            titulo: "Transação realizada com sucesso",
+                            detalhes: _vm.$store.state.transacao
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.$store.state.transacao.status == "erro"
+                      ? _c("alert-component", {
+                          attrs: {
+                            tipo: "danger",
+                            titulo: "Erro na transação",
+                            detalhes: _vm.$store.state.transacao
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.$store.state.transacao.status != "sucesso"
+                      ? _c("span", [
+                          _vm._v(
+                            "Tem certeza que deseja excluir - " +
+                              _vm._s(_vm.$store.state.item.nome_produto) +
+                              "?"
+                          )
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(
@@ -40725,22 +40777,24 @@ var render = function() {
                       staticClass: "btn btn-secondary",
                       attrs: { type: "button", "data-bs-dismiss": "modal" }
                     },
-                    [_vm._v("Cancelar")]
+                    [_vm._v("Fechar")]
                   ),
                   _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.remover()
-                        }
-                      }
-                    },
-                    [_vm._v("Excluir")]
-                  )
+                  _vm.$store.state.transacao.status != "sucesso"
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.remover()
+                            }
+                          }
+                        },
+                        [_vm._v("Excluir")]
+                      )
+                    : _vm._e()
                 ])
               ])
             ])
@@ -40785,250 +40839,274 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(_vm.$store.state.item) +
-                      "\n                "
-                  ),
-                  _c("form", [
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "exampleInputEmail1" }
-                        },
-                        [_vm._v("Nome do produto")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                _c(
+                  "div",
+                  { staticClass: "modal-body" },
+                  [
+                    _vm.$store.state.transacao.status == "sucesso"
+                      ? _c("alert-component", {
+                          attrs: {
+                            tipo: "success",
+                            titulo: "Transação realizada com sucesso",
+                            detalhes: _vm.$store.state.transacao
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.$store.state.transacao.status == "erro"
+                      ? _c("alert-component", {
+                          attrs: {
+                            tipo: "danger",
+                            titulo: "Erro na transação",
+                            detalhes: _vm.$store.state.transacao
+                          }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("form", [
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.$store.state.item.nome_produto,
-                            expression: "$store.state.item.nome_produto"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "exampleInputEmail1",
-                          "aria-describedby": "emailHelp"
-                        },
-                        domProps: { value: _vm.$store.state.item.nome_produto },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" }
+                          },
+                          [_vm._v("Nome do produto")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.$store.state.item.nome_produto,
+                              expression: "$store.state.item.nome_produto"
                             }
-                            _vm.$set(
-                              _vm.$store.state.item,
-                              "nome_produto",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "exampleInputEmail1",
+                            "aria-describedby": "emailHelp"
+                          },
+                          domProps: {
+                            value: _vm.$store.state.item.nome_produto
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.$store.state.item,
+                                "nome_produto",
+                                $event.target.value
+                              )
+                            }
                           }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "formFile" }
-                        },
-                        [_vm._v("Imagem")]
-                      ),
+                        })
+                      ]),
                       _vm._v(" "),
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: { type: "file", id: "formFile" },
-                        on: {
-                          change: function($event) {
-                            return _vm.carregarImagem($event)
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "exampleInputEmail1" }
-                        },
-                        [_vm._v("Qtd em estoque")]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.$store.state.item.qtd_estoque,
-                            expression: "$store.state.item.qtd_estoque"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "exampleInputEmail1",
-                          "aria-describedby": "emailHelp"
-                        },
-                        domProps: { value: _vm.$store.state.item.qtd_estoque },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            staticClass: "form-label",
+                            attrs: { for: "formFile" }
+                          },
+                          [_vm._v("Imagem")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: { type: "file", id: "formFile" },
+                          on: {
+                            change: function($event) {
+                              return _vm.carregarImagem($event)
                             }
-                            _vm.$set(
-                              _vm.$store.state.item,
-                              "qtd_estoque",
-                              $event.target.value
-                            )
                           }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "exampleInputEmail1" }
-                        },
-                        [_vm._v("Qtd de reposicão")]
-                      ),
+                        })
+                      ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.$store.state.item.qtd_reposicao,
-                            expression: "$store.state.item.qtd_reposicao"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "exampleInputEmail1",
-                          "aria-describedby": "emailHelp"
-                        },
-                        domProps: {
-                          value: _vm.$store.state.item.qtd_reposicao
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" }
+                          },
+                          [_vm._v("Qtd em estoque")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.$store.state.item.qtd_estoque,
+                              expression: "$store.state.item.qtd_estoque"
                             }
-                            _vm.$set(
-                              _vm.$store.state.item,
-                              "qtd_reposicao",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "exampleInputEmail1",
+                            "aria-describedby": "emailHelp"
+                          },
+                          domProps: {
+                            value: _vm.$store.state.item.qtd_estoque
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.$store.state.item,
+                                "qtd_estoque",
+                                $event.target.value
+                              )
+                            }
                           }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "exampleInputEmail1" }
-                        },
-                        [_vm._v("Data de validade")]
-                      ),
+                        })
+                      ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.$store.state.item.data_validade,
-                            expression: "$store.state.item.data_validade"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "exampleInputEmail1",
-                          "aria-describedby": "emailHelp"
-                        },
-                        domProps: {
-                          value: _vm.$store.state.item.data_validade
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" }
+                          },
+                          [_vm._v("Qtd de reposicão")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.$store.state.item.qtd_reposicao,
+                              expression: "$store.state.item.qtd_reposicao"
                             }
-                            _vm.$set(
-                              _vm.$store.state.item,
-                              "data_validade",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "exampleInputEmail1",
+                            "aria-describedby": "emailHelp"
+                          },
+                          domProps: {
+                            value: _vm.$store.state.item.qtd_reposicao
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.$store.state.item,
+                                "qtd_reposicao",
+                                $event.target.value
+                              )
+                            }
                           }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "mb-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass: "form-label",
-                          attrs: { for: "exampleInputEmail1" }
-                        },
-                        [_vm._v("Preço unitário")]
-                      ),
+                        })
+                      ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
                           {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.$store.state.item.preco_unitario,
-                            expression: "$store.state.item.preco_unitario"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          id: "exampleInputEmail1",
-                          "aria-describedby": "emailHelp"
-                        },
-                        domProps: {
-                          value: _vm.$store.state.item.preco_unitario
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" }
+                          },
+                          [_vm._v("Data de validade")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.$store.state.item.data_validade,
+                              expression: "$store.state.item.data_validade"
                             }
-                            _vm.$set(
-                              _vm.$store.state.item,
-                              "preco_unitario",
-                              $event.target.value
-                            )
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "exampleInputEmail1",
+                            "aria-describedby": "emailHelp"
+                          },
+                          domProps: {
+                            value: _vm.$store.state.item.data_validade
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.$store.state.item,
+                                "data_validade",
+                                $event.target.value
+                              )
+                            }
                           }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _vm._m(6)
-                  ])
-                ]),
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mb-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-label",
+                            attrs: { for: "exampleInputEmail1" }
+                          },
+                          [_vm._v("Preço unitário")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.$store.state.item.preco_unitario,
+                              expression: "$store.state.item.preco_unitario"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: "exampleInputEmail1",
+                            "aria-describedby": "emailHelp"
+                          },
+                          domProps: {
+                            value: _vm.$store.state.item.preco_unitario
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.$store.state.item,
+                                "preco_unitario",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _vm._m(6)
+                    ])
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer" }, [
                   _c(

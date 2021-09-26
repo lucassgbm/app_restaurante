@@ -208,13 +208,15 @@
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Excluir registro</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Deseja excluir - {{ $store.state.item.nome_produto}}?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn btn-primary" @click="remover()">Excluir</button>
+    </div>
+    <div class="modal-body">
+        <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
+        <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'erro'"></alert-component>
+        <span v-if="$store.state.transacao.status != 'sucesso'">Tem certeza que deseja excluir - {{ $store.state.item.nome_produto}}?</span>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" v-if="$store.state.transacao.status != 'sucesso'" @click="remover()">Excluir</button>
       </div>
     </div>
   </div>
@@ -232,8 +234,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- formulário para inclusão de produto -->
-                {{ $store.state.item }}
+                <!-- formulário para edição de produto -->
+
+                <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
+                <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'erro'"></alert-component>
+                                
                 <form>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Nome do produto</label>
@@ -345,6 +350,11 @@
                 this.arquivoImagem = e.target.files
             },
             setStore(obj){
+                // apagar mensagens antigas ao acionar o modal:
+                this.$store.state.transacao.status = ''
+                this.$store.state.transacao.mensagem = ''
+                this.$store.state.transacao.dados = ''
+
                 this.$store.state.item = obj
                 console.log(obj)
             },
@@ -377,6 +387,8 @@
                         this.transacaoDetalhes = {
                             mensagem: 'ID do registro: '+response.data.id
                         }
+                        this.carregarLista()
+
 
                         // console.log(response)
                     })
@@ -389,7 +401,6 @@
                         errors.response
                         // console.log(data.message)
                     })
-                this.carregarLista()
             },
             atualizar(){
 
@@ -422,10 +433,15 @@
                 axios.post(url, formData, config)
                     .then(response => {
                         console.log('Atualizado', response)
+                        this.$store.state.transacao.status = 'sucesso'
+                        this.$store.state.transacao.mensagem = 'Produto atualizado com sucesso!'
                         this.carregarLista()
                     })
                     .catch(errors => {
                         console.log('Erro de atualização', errors.response)
+                        this.$store.state.transacao.status = 'erro'
+                        this.$store.state.transacao.mensagem = errors.response.data.message
+                        this.$store.state.transacao.dados = errors.response.data.errors
                     })
             },
             remover(){
@@ -448,11 +464,13 @@
 
                 axios.post(url , formData, config)
                     .then(response => {
-                        console.log('Registro removido com sucesso', response)
+                        this.$store.state.transacao.status = 'sucesso'
+                        this.$store.state.transacao.mensagem = response.data.msg
                         this.carregarLista()
                     })
                     .catch(errors => {
-                        console.log('Houve um erro ao excluir o registro', errors.response)
+                        this.$store.state.transacao.status = 'erro'
+                        this.$store.state.transacao.mensagem = errors.response.data.erro
                     })
             },
             
