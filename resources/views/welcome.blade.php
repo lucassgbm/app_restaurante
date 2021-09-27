@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
 
-    <title>Hello, world!</title>
+    <title>Site Demo</title>
   </head>
 
     {{-- SWIPER --}}
