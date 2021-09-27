@@ -8,16 +8,16 @@
     {{-- Fontes --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&family=Roboto:wght@100&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&family=Roboto:wght@100:900&display=swap" rel="stylesheet">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/app.css" media="screen" />
+    {{-- <link rel="stylesheet" type="text/css" href="../css/app.css" media="screen" /> --}}
     <link rel="stylesheet" type="text/css" href="../css/site.css" media="screen" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
 
 
-    <title>Site Demo</title>
+
+    <title>Hello, world!</title>
   </head>
 
     {{-- SWIPER --}}
@@ -61,103 +61,181 @@
     -->
 
     <!-- Slider main container -->
-    <div class="swiper">
-        <nav class="py-2">
-        <div class="container d-flex flex-wrap">
-        <ul class="nav me-auto">
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">About</a></li>
-        </ul>
-        <ul class="nav">
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Ajuda</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Contato</a></li>
-        </ul>
-        </div>
-        </nav>
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-        <!-- Slides -->
-        <div class="swiper-slide">
-        
-            <div class="px-4 py-5 my-5 text-center">
-                <h1 class="display-5 fw-bold">Centered hero</h1>
-                <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
-                    <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
-                </div>
-                </div>
+    <section class="swiper">
+        <header class="header-site">
+            <div class="container">
+                
+                <nav class="py-2 mt-2">
+                    <div class="container d-flex flex-wrap">
+                        <div class="logo logo_header">
+                            <img src="{{ asset('img/logo_site_header.png')}}">
+                        </div>
+                        <ul class="nav me-auto">
+                            
+                            <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Preços</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Desenvolvedores</a></li>
+                            
+                        </ul>
+                        <ul class="nav">
+                            <li class="nav-item"><a href="#" class="nav-link">Ajuda</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <button type="button" class="btn btn-outline-danger">Começar</button>
+                                </a>
+                            </li>
+                            
+
+
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        
-        
+            
+        </header>
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+            
+                <div class="px-4 py-5 my-5 mt-10 text-center">
+                    <h1 class="display-5 fw-bold">Bem vindo ao SiteDemo</h1>
+                    <div class="col-lg-6 mx-auto">
+                    <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Sobre o SiteDemo</button>
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Começar</button>
+                    </div>
+                    </div>
+                </div>
+            
+            
+            </div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
         </div>
-        <div class="swiper-slide">Slide 2</div>
-        <div class="swiper-slide">Slide 3</div>
-        ...
-    </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
 
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
 
-    <!-- If we need scrollbar -->
-    <div class="swiper-scrollbar"></div>
-    </div>
-    <header class="d-flex justify-content-center border-bottom">
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      </ul>
-    </header>
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </section>
+
     <div class="container">
 
-        <div class="row align-items-center">
-            <div class="col">
-            One of three columns
+        <div class="row align-items-center mb-4 mt-4">
+            <div class="col text-center">
+                <img src="{{ asset('img/graphicriver.png')}}">
             </div>
-            <div class="col">
-            One of three columns
+            <div class="col text-center">
+                <img src="{{ asset('img/themeforest.png')}}">
             </div>
-            <div class="col">
-            One of three columns
+            <div class="col text-center">
+                <img src="{{ asset('img/audiojungle.png')}}">
+            </div>
+            <div class="col text-center">
+                <img src="{{ asset('img/codecanyon.png')}}">
             </div>
         </div>
 
     </div>
+    <section class="blank">
+    </section>
+    <section class="servicos">
+        <div class="container">
 
-    <div class="container">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
-            <div class="col">
-            
-                <div class="col-md-4 d-flex align-items-center">
-                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-                    <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-                </a>
-                <span class="text-muted">© 2021 Company, Inc</span>
+            <div class="row align-items-center mb-4 mt-4 text-center">
+                <div class="col box dark-box">
+                    <img src="{{ asset('img/icon-1.png')}}">
+                    <h4 class="display-8">Título</h4>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                </div>
+                <div class="col box clear-box">
+                    <img src="{{ asset('img/icon-2.png')}}">
+                    <h4>Título</h4>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                </div>
+                <div class="col box dark-box">
+                    <img src="{{ asset('img/icon-3.png')}}">
+                    <h4>Título</h4>
+                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
                 </div>
             </div>
-            <div class="col">
-            One of three columns
-            </div>
-            <div class="col">
-                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-                    <li class="ms-3"><a class="text-muted" href="#">teste</a></li>
-                    <li class="ms-3"><a class="text-muted" href="#">teste</a></li>
-                </ul>
+
+        </div>
+    </section>
+    <section class="blank">
+    </section>
+    <section class="atendimento_cliente">
+        <div class="container">
+            <div class="row flex-lg-row align-items-center g-5 py-5">
+                <div class="col-lg-6">
+                    <h4 class="display-7 fw-bold">Atendimento ao Cliente</h4>
+                    <p class="lead">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="button" class="btn btn-success btn-lg px-4 me-md-2">Success</button>
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+                        
+                    </div>
+
+                </div>
             </div>
 
-            
-        </footer>
-    </div>
+        </div>
+    </section>
+    <section class="newsletter">
+        <div class="px-4 py-5 my-5 text-center">
+            <h4 class="display-7 fw-bold">Newsletter</h4>
+            <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Receba nossas informações por email e fique sabendo de todas as novidades</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+
+                <input type="text" class="form-control" id="email" placeholder="Seu e-mail">
+                <button type="button" class="btn btn-primary btn-lg px-4">Salvar</button>
+            </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
+                <div class="col flex-wrap">
+                
+                    <div class="logo logo_footer">
+                        <img src="{{ asset('img/logo_site_footer.png')}}">
+                    </div>
+                </div>
+                <div class="col flex-wrap">
+                    <ul class="nav me-auto">
+                            
+                        
+                        <li class="ms-3"><a class="text-muted" href="#">Home</a></li>
+                        <li class="ms-3"><a class="text-muted" href="#">Sobre</a></li>
+                        <li class="ms-3"><a class="text-muted" href="#">Preços</a></li>
+                        <li class="ms-3"><a class="text-muted" href="#">Desenvolvedores</a></li>
+                        <li class="ms-3"><a class="text-muted" href="#">Ajuda</a></li>
+                        <li class="ms-3"><a class="text-muted" href="#">Contato</a></li>
+                            
+                        
+                    </ul>
+                </div>
+                <div class="col flex-wrap">
+                    <ul class="nav me-auto">
+                        <li class="ms-3"><a class="text-muted" href="#">+80 1234-5678</a></li>
+                        <li class="ms-3"><a class="text-muted" href="#">ola@sitedemo.com.br</a></li>
+                    </ul>
+                </div>
+
+                
+            </footer>
+        </div>
+    </section>
+        
     
   </div> 
   {{-- fim - body --}}

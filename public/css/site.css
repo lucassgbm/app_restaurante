@@ -1,8 +1,28 @@
 body {
-    font-family: 'Roboto', sans-serif bold;
+    font-family: 'Roboto', sans-serif;
+    font-weight:100;
 }
+
+.header-site {
+  color: #edecdf;
+}
+
+.blank {
+  margin: 100px 0 100px 0;
+}
+
+.atendimento_cliente {
+  height: 500px;
+  background-image: url('../img/atendimento_cliente.png');
+  background-repeat: no-repeat;
+  background-position: center right;
+
+
+
+}
+
 .swiper {
-    font-family: 'Raleway', sans-serif ;
+    /* font-family: 'Raleway', sans-serif ; */
 
     width: 100%;
     height: 850px;
@@ -13,6 +33,101 @@ body {
     color: #ffffff;
   }
   
-  .swiper .nav {
+  .swiper .nav-item a {
     color: #ffffff;
+        /* font-family: 'Roboto', sans-serif ; */
+
   }
+
+  h1 {
+    /* font-family: 'Roboto', sans-serif; */
+  }
+
+.btn-primary {
+  background-color: #00baff;
+  color: #ffffff;
+  border-color: #00baff;
+  font-weight:100;
+
+}
+
+.btn-success {
+  background-color: #04f385;
+  color: #ffffff;
+  border-color: #04f385;
+  font-weight:100;
+
+}
+  
+.btn-primary:hover {
+  background-color: transparent;
+  border-color: #ffffff;
+
+}
+
+.btn-outline-secondary {
+  color: #ffffff;
+  border-color: #ffffff;
+  font-weight:100;
+
+}
+
+.btn-outline-danger {
+  color: #ffffff;
+  padding: 0 10px 0 10px;
+  border-color: #ffffff;
+  font-weight:100;
+  border-radius: 10px;
+
+}
+
+.btn-outline-danger:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #00192c;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #00baff;
+  border-color: #00baff;
+}
+
+.box {
+  padding: 50px 20px 50px 20px;
+
+}
+
+
+.box h4 {
+  padding: 20px 0 20px 0;
+}
+
+.dark-box {
+  background-color: #00baff;
+  color: #ffffff;
+  box-shadow: 2px 5px 10px #b6b6b6;
+}
+
+.newsletter {
+  width: 100%;
+  height: 350px;
+  background-color: #00192c;
+  color: #919ca2;
+
+}
+
+.newsletter h4 {
+  color: #ffffff;
+}
+
+.newsletter input[type='text'] {
+ background-color: transparent;
+ border: 1px solid #919ca2;
+ border-radius: 5px;
+ width: 50%;
+ color: #ffffff;
+}
+
+.logo img{
+  width: 125px;
+}
