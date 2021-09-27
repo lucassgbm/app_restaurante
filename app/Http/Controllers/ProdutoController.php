@@ -19,11 +19,9 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        // $produtos = Produto::all();
 
+        // produtos relacionados com fornecedores e tipos
         $produtos = $this->produto->with('fornecedor', 'tipo')->get();
-
-        
 
         return response()->json($produtos, 200);
 

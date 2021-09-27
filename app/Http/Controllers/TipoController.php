@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class TipoController extends Controller
 {
+    public function __construct(Tipo $tipo){
+        $this->tipo = $tipo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,10 @@ class TipoController extends Controller
      */
     public function index()
     {
-        //
+        // todos os tipos
+        $tipos = Tipo::all();        
+
+        return response()->json($tipos, 200);
     }
 
     /**

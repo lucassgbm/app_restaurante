@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::prefix('v1')->group(function(){
 
     Route::apiResource('produto', 'App\Http\Controllers\ProdutoController');
+    Route::apiResource('fornecedor', 'App\Http\Controllers\FornecedorController');
+    Route::apiResource('tipo', 'App\Http\Controllers\TipoController');
     Route::get('home', [App\Http\Controllers\HomeController::class, 'index']);
 
 

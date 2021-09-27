@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class FornecedorController extends Controller
 {
+    public function __construct(Fornecedor $fornecedor){
+        $this->fornecedor = $fornecedor;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +17,10 @@ class FornecedorController extends Controller
      */
     public function index()
     {
-        //
+        // todos os fornecedores
+        $fornecedores = Fornecedor::all();
+
+        return response()->json($fornecedores, 200);
     }
 
     /**
