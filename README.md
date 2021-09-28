@@ -9,13 +9,13 @@
 
 ## Instalação
 
-- Após fazer o checkout do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome dump_teste.sql
-- Criar link simbólico para o upload de arquivos: php artisan storage:link
+- Após fazer o checkout do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome db_lucas_28092021.sql
 - renomear o arquivo .env-example para .env (verificar de acordo com as configurações do seu banco)
-- rodar o comando: composer install
+- rodar os comandos (na raiz do projeto): composer install
+- Criar link simbólico para o upload de arquivos: php artisan storage:link
 - rodar o comando: npm install
-- na raiz do projeto, executar o comando: php artisan serve
-- também na raiz do projeto, executar o comando: npm run dev
+- executar o comando: php artisan serve
+- executar o comando: npm run dev
 
 ## Frontend
 
