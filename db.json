@@ -1,0 +1,48 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "image": "icon-1.png",
+      "title": "Estamos Integrados",
+      "description": "Os títulos e descrições destes itens devem ser requisitados de uma API fictícia. Utilize o json-server para simular uma API."
+    },
+    {
+      "id": 2,
+      "image": "icon-2.png",
+      "title": "Estamos Integrados 2",
+      "description": "Os títulos e descrições destes itens devem ser requisitados de uma API fictícia. Utilize o json-server para simular uma API."
+    },
+    {
+      "id": 3,
+      "image": "icon-3.png",
+      "title": "Estamos Integrados 3",
+      "description": "Os títulos e descrições destes itens devem ser requisitados de uma API fictícia. Utilize o json-server para simular uma API."
+    }
+  ],
+  "clients": [
+    {
+      "id": 1,
+      "title": "GraphicRiver",
+      "image": "graphicriver.png",
+      "link": "https://graphicriver.net/"
+    },
+    {
+      "id": 2,
+      "title": "ThemeForest",
+      "image": "themeforest.png",
+      "link": "https://themeforest.net"
+    },
+    {
+      "id": 3,
+      "title": "AudioJungle",
+      "image": "audiojungle.png",
+      "link": "https://audiojungle.net"
+    },
+    {
+      "id": 3,
+      "title": "CodeCanyon",
+      "image": "codecanyon.png",
+      "link": "https://codecanyon.net/"
+    }
+  ]
+}

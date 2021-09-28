@@ -9,7 +9,7 @@
                     <div class="card-body">
                         {{ $store.state.teste }}
                         <!-- botão para ativar o modal para novo registro -->
-                        <button type="button" class="btn btn-success float-left mb-2"  data-toggle="modal" data-target="#modalAdicionarProduto">Adicionar</button>
+                        <button type="button" class="btn btn-success float-left mb-2"  data-toggle="modal" data-target="#modalCadastrarProduto" @click="setPickLists()">Cadastrar</button>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -30,10 +30,10 @@
                                     <td><img :src="'/storage/'+produto.imagem" width="30"></td>
                                     <td>{{ produto.qtd_estoque }}</td>
                                     <td>{{ produto.qtd_reposicao }}</td>
-                                    <td>{{ produto.data_validade }}</td>
+                                    <td>{{ produto.data_validade | formatarData }}</td>
                                     <td>
                                         <!-- botão de editar -->
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalEditarProduto" @click="setStore(produto)">editar</button>
+                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modalEditarProduto" @click="setStore(produto), setPickLists()">editar</button>
                                         <!-- botão de excluir -->
                                         <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#modalExcluirProduto" @click="setStore(produto)">excluir</button>
                                     </td>
@@ -65,18 +65,17 @@
                 </div>
                 <!-- fim do card de listagem dos produtos -->
 
-                <!-- Início - adicionar produto -->
-                <!-- Início - Modal -->
-                <div class="modal fade" id="modalAdicionarProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- Início - adicionar -->
+                <div class="modal fade" id="modalCadastrarProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Titulo aqui</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Cadastrar produto</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <!-- formulário para inclusão de produto -->
-                                <alert-component tipo="success" :detalhes="transacaoDetalhes" titulo="Cadastro realizado com sucesso" v-if="transacaoStatus == 'adicionado'"></alert-component>
+                                <alert-component tipo="success" :detalhes="transacaoDetalhes" titulo="Produto cadastrado com sucesso" v-if="transacaoStatus == 'adicionado'"></alert-component>
                                 <alert-component tipo="danger" :detalhes="transacaoDetalhes" titulo="Erro ao tentar cadastrar o produto" v-if="transacaoStatus == 'erro'"></alert-component>
                                 
                                 <form>
@@ -113,20 +112,19 @@
                                     <div class="mb-3">
                                         <label class="form-label">Tipo</label>
                                         <select class="form-select" id="tipo_id" v-model="tipoId" aria-label="Default select example">
-                                            <option selected>Selecione</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
+                                            <option selected value="">Selecione</option>
+                                            <option v-for="tipo in tipos" :key="tipo.id" :value="tipo.id">{{tipo.nome_tipo}}</option>
+
+                                            
                                         </select>
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Fornecedor</label>
                                         <select class="form-select" id="fornecedor_id" v-model="fornecedorId" aria-label="Default select example">
-                                            <option selected>Selecione</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
+                                            <option selected value="">Selecione</option>
+                                            <option v-for="fornecedor in fornecedores" :key="fornecedor.id" :value="fornecedor.id">{{fornecedor.nome_fornecedor}}</option>
+                                            
                                         </select>
                                     </div>
 
@@ -138,12 +136,11 @@
                             </div>
                         </div>
                     </div>  
-                <!-- Fim - Modal -->
                 </div>
-                <!-- Fim - adicionar produto -->
+                <!-- Fim - adicionar  -->
 
-<!-- --------------Visualizar produto --------------- -->
-<div class="modal fade" id="modalVisualizarProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <!-- Visualizar -->
+                <div class="modal fade" id="modalVisualizarProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -156,34 +153,34 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Nome do produto</label>
-                                        <input type="text" class="form-control" id="nome_produto" :value="$store.state.item.nome_produto" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.nome_produto" aria-describedby="emailHelp" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Quantidade em estoque</label>
-                                        <input type="text" class="form-control" id="nome_produto" :value="$store.state.item.qtd_estoque" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.qtd_estoque" aria-describedby="emailHelp" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Quantidade de reposição</label>
-                                        <input type="text" class="form-control" id="nome_produto" :value="$store.state.item.qtd_reposicao" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.qtd_reposicao" aria-describedby="emailHelp" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Data de validade</label>
-                                        <input type="text" class="form-control" id="nome_produto" :value="$store.state.item.data_validade" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.data_validade | formatarData" aria-describedby="emailHelp" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Preço unitário</label>
-                                        <input type="text" class="form-control" id="nome_produto" :value="$store.state.item.preco_unitario" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.preco_unitario" aria-describedby="emailHelp" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Tipo</label>
-                                        <input type="text" class="form-control" id="nome_produto" :value="$store.state.item.tipo" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.tipo" aria-describedby="emailHelp" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Fornecedor</label>
-                                        <input type="text" class="form-control" id="nome_produto" :value="$store.state.item.fornecedor" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.fornecedor" aria-describedby="emailHelp" readonly>
                                     </div>
                                     
-                                    
+                                    {{$store.state.item.nome_fornecedor}}
 
                                     
 
@@ -193,114 +190,108 @@
                             </div>
                         </div>
                     </div>  
-                <!-- Fim - Modal -->
                 </div>
 
-<!-- ------------- Fim - Visualizar produto ----------------- -->
-
-<!-- --------------------- -->
+                <!-- Fim - Visualizar -->
 
 
-<!-- Modal Excluir -->
-<div class="modal fade" id="modalExcluirProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Excluir registro</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-        <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
-        <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'erro'"></alert-component>
-        <span v-if="$store.state.transacao.status != 'sucesso'">Tem certeza que deseja excluir - {{ $store.state.item.nome_produto}}?</span>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" v-if="$store.state.transacao.status != 'sucesso'" @click="remover()">Excluir</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ---------------------- -->
 
-
-                <!-- Início - editar produto -->
-                 <!-- Início - Modal -->
-    <div class="modal fade" id="modalEditarProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Editar - {{ $store.state.item.nome_produto }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- formulário para edição de produto -->
-
-                <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
-                <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'erro'"></alert-component>
-                                
-                <form>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Nome do produto</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.nome_produto">
+                <!--  Excluir -->
+                <div class="modal fade" id="modalExcluirProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Excluir registro</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
+                            <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'erro'"></alert-component>
+                            <span v-if="$store.state.transacao.status != 'sucesso'">Tem certeza que deseja excluir - {{ $store.state.item.nome_produto}}?</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button type="button" class="btn btn-primary" v-if="$store.state.transacao.status != 'sucesso'" @click="remover()">Excluir</button>
+                        </div>
+                        </div>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label for="formFile" class="form-label">Imagem</label>
-                        <input class="form-control" type="file" id="formFile" @change="carregarImagem($event)">
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Qtd em estoque</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.qtd_estoque">
-                    </div>
+                </div>
+                <!-- Fim - Excluir -->
 
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Qtd de reposicão</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.qtd_reposicao">
-                    </div>
 
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Data de validade</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.data_validade">
-                    </div>
+                <!-- Editar -->
+                <div class="modal fade" id="modalEditarProduto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar - {{ $store.state.item.nome_produto }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- formulário para edição de produto -->
 
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Preço unitário</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.preco_unitario">
-                    </div>
+                                <alert-component tipo="success" titulo="Transação realizada com sucesso" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'sucesso'"></alert-component>
+                                <alert-component tipo="danger" titulo="Erro na transação" :detalhes="$store.state.transacao"  v-if="$store.state.transacao.status == 'erro'"></alert-component>
+                                                
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Nome do produto</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.nome_produto">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Imagem</label>
+                                        <input class="form-control" type="file" id="formFile" @change="carregarImagem($event)">
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Qtd em estoque</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.qtd_estoque">
+                                    </div>
 
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Tipo</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Qtd de reposicão</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.qtd_reposicao">
+                                    </div>
 
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Fornecedor</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Data de validade</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.data_validade">
+                                    </div>
 
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @click="atualizar()">Atualizar</button>
-            </div>
-            </div>
-        </div>  
-    <!-- Fim - Modal -->
-    </div>
-                <!-- Fim - editar produto -->
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Preço unitário</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="$store.state.item.preco_unitario">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Tipo</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="">Selecione</option>
+                                            <option v-for="tipo in tipos" :key="tipo.id" :value="tipo.id">{{tipo.nome_tipo}}</option>
+
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Fornecedor</label>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="">Selecione</option>
+                                            <option v-for="fornecedor in fornecedores" :key="fornecedor.id" :value="fornecedor.id">{{fornecedor.nome_fornecedor}}</option>
+                                            
+                                        </select>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-primary" @click="atualizar()">Atualizar</button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+                <!-- Fim - Editar -->
             </div>
         </div>
     </div>
@@ -316,7 +307,7 @@
         },
         data(){
             return {
-                urlBase: 'http://localhost:8000/api/produto',
+                urlBase: 'http://localhost:8000/api/',
 
                 nomeProduto: '',
                 arquivoImagem: [],
@@ -327,6 +318,8 @@
                 tipoId: '',
                 fornecedorId: '',
                 produtos: [],
+                fornecedores: [],
+                tipos: [],
                 transacaoStatus: '',
                 transacaoDetalhes: ''
 
@@ -335,10 +328,9 @@
         methods: {
             carregarLista(){
 
-                axios.get(this.urlBase)
+                axios.get(this.urlBase+'produto')
                     .then(response => {
                         this.produtos = response.data
-
 
                     })
                     .catch(errors => {
@@ -356,7 +348,30 @@
                 this.$store.state.transacao.dados = ''
 
                 this.$store.state.item = obj
-                console.log(obj)
+            },
+            setPickLists(){
+
+                // carregar fornecedores
+                axios.get(this.urlBase+'fornecedor')
+                    .then(response => {
+                        this.fornecedores = response.data
+
+                    })
+                    .catch(errors => {
+                        console.log(errors)
+
+                    })
+                    
+                // carregar tipos
+                axios.get(this.urlBase+'tipo')
+                    .then(response => {
+                        this.tipos = response.data
+
+                    })
+                    .catch(errors => {
+                        console.log(errors)
+
+                    })
             },
             salvar(){
                 console.log(this.nomeProduto, this.arquivoImagem[0])
@@ -376,21 +391,30 @@
                     headers: {
                         'Content-Type': 'multipart/form-data',
                         'Accept': 'application/json',
-                        // 'Authorization': this.token
                     }
                 }
 
                 // url, conteúdo, configuração
-                axios.post(this.urlBase, formData, config)
+                axios.post(this.urlBase+'produto', formData, config)
                     .then(response => {
                         this.transacaoStatus = 'adicionado'
                         this.transacaoDetalhes = {
                             mensagem: 'ID do registro: '+response.data.id
                         }
+                        this.nomeProduto = '',
+                        this.arquivoImagem = [],
+                        this.qtdEstoque = '',
+                        this.qtdReposicao = '',
+                        this.dataValidade = '',
+                        this.precoUnitario = '',
+                        this.tipoId = '',
+                        this.fornecedorId = '',
+                        this.produtos = [],
+                        this.fornecedores = [],
+                        this.tipos = [],
+                        
                         this.carregarLista()
 
-
-                        // console.log(response)
                     })
                     .catch(errors => {
                         this.transacaoStatus = 'erro'
@@ -399,12 +423,9 @@
                             dados: errors.response.data.errors
                         }
                         errors.response
-                        // console.log(data.message)
                     })
             },
             atualizar(){
-
-                console.log(this.$store.state.item)
 
                 let formData = new FormData();
                 formData.append('_method', 'patch')
@@ -421,7 +442,7 @@
                 formData.append('tipo_id', this.$store.state.item.tipo_id)
                 formData.append('fornecedor_id', this.$store.state.item.fornecedor_id)
 
-                let url = this.urlBase + '/' + this.$store.state.item.id
+                let url = this.urlBase+'produto' + '/' + this.$store.state.item.id
 
                 let config = {
                     headers: {
@@ -447,7 +468,7 @@
             remover(){
 
                 // url com a ID do produto a ser excluído
-                let url = this.urlBase + '/' + this.$store.state.item.id
+                let url = this.urlBase+'produto' + '/' + this.$store.state.item.id
 
                 let formData = new FormData();
 
@@ -474,12 +495,9 @@
                     })
             },
             
-
-        
         },
         mounted() {
             this.carregarLista()
-            console.log('Component mounted.')
         }
     }
 </script>

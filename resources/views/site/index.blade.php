@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     {{-- <link rel="stylesheet" type="text/css" href="../css/app.css" media="screen" /> --}}
     <link rel="stylesheet" type="text/css" href="../css/site.css" media="screen" />
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
 
 
@@ -23,6 +25,7 @@
     {{-- SWIPER --}}
   <link  rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script>
         const swiper = new Swiper('.swiper', {
@@ -49,10 +52,11 @@
     </script>
   <body>
 
+  <div id="app">
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
@@ -110,12 +114,11 @@
                     </div>
                 </div>
             
-            
             </div>
             <div class="swiper-slide">Slide 2</div>
             <div class="swiper-slide">Slide 3</div>
         </div>
-        <!-- If we need pagination -->
+        {{-- <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
 
         <!-- If we need navigation buttons -->
@@ -123,49 +126,23 @@
         <div class="swiper-button-next"></div>
 
         <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div>
+        <div class="swiper-scrollbar"></div> --}}
     </section>
+    <section class="clientes">
+        <div class="container">
 
-    <div class="container">
-
-        <div class="row align-items-center mb-4 mt-4">
-            <div class="col text-center">
-                <img src="{{ asset('img/graphicriver.png')}}">
-            </div>
-            <div class="col text-center">
-                <img src="{{ asset('img/themeforest.png')}}">
-            </div>
-            <div class="col text-center">
-                <img src="{{ asset('img/audiojungle.png')}}">
-            </div>
-            <div class="col text-center">
-                <img src="{{ asset('img/codecanyon.png')}}">
-            </div>
+            {{-- componente para Clientes --}}
+            <clientes-component></clientes-component>
+            
         </div>
-
-    </div>
+    </section>
     <section class="blank">
     </section>
     <section class="servicos">
         <div class="container">
 
-            <div class="row align-items-center mb-4 mt-4 text-center">
-                <div class="col box dark-box">
-                    <img src="{{ asset('img/icon-1.png')}}">
-                    <h4 class="display-8">Título</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                </div>
-                <div class="col box clear-box">
-                    <img src="{{ asset('img/icon-2.png')}}">
-                    <h4>Título</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                </div>
-                <div class="col box dark-box">
-                    <img src="{{ asset('img/icon-3.png')}}">
-                    <h4>Título</h4>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                </div>
-            </div>
+            {{-- componente para Serviços --}}
+            <servicos-component></servicos-component>
 
         </div>
     </section>
@@ -176,10 +153,10 @@
             <div class="row flex-lg-row align-items-center g-5 py-5">
                 <div class="col-lg-6">
                     <h4 class="display-7 fw-bold">Atendimento ao Cliente</h4>
-                    <p class="lead">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                    <p class="lead">Precisando entrar em contato, utilize nossos canais de atendimento ou consulte a documentação para mais informações.</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <button type="button" class="btn btn-success btn-lg px-4 me-md-2">Success</button>
-                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
+                        <button type="button" class="btn btn-success btn-lg px-4 me-md-2">Envie um ticket</button>
+                        <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Documentação</button>
                         
                     </div>
 
@@ -236,7 +213,7 @@
         </div>
     </section>
         
-    
+    </div>
   </div> 
   {{-- fim - body --}}
 
