@@ -20,7 +20,7 @@
 ## Frontend
 
 - na raiz do projeto, rodar o comando: json-server --watch db.json
-o desenvolvimento para o teste frontend está disponível pela url: http://localhost:8000/
+- o desenvolvimento para o teste frontend está disponível pela url: http://localhost:8000/
 
 
 ## Backend
