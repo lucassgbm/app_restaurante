@@ -19,7 +19,7 @@
 
 
 
-    <title>Hello, world!</title>
+    <title>Site Demo</title>
   </head>
 
     {{-- SWIPER --}}

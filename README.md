@@ -13,6 +13,7 @@
 - Criar link simbólico para o upload de arquivos: php artisan storage:link
 - renomear o arquivo .env-example para .env (verificar de acordo com as configurações do seu banco)
 - rodar o comando: composer install
+- rodar o comando: npm install
 - na raiz do projeto, executar o comando: php artisan serve
 - também na raiz do projeto, executar o comando: npm run dev
 
