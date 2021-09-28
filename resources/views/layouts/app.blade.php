@@ -109,8 +109,8 @@
 
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">GitHub</a></li>
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">LinkedIn</a></li>
+                <li class="nav-item"><a href="https://github.com/lucassgbm/" class="nav-link px-2 text-muted">GitHub</a></li>
+                <li class="nav-item"><a href="https://www.linkedin.com/in/lucasbelfort/" class="nav-link px-2 text-muted">LinkedIn</a></li>
                 
             </ul>
             <p class="text-center text-muted">© 2021 Desenvolvido por Lucas Belfort</p>

@@ -3812,6 +3812,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$store.state.transacao.status = '';
       this.$store.state.transacao.mensagem = '';
       this.$store.state.transacao.dados = '';
+      this.transacaoStatus = '', this.transacaoDetalhes = '';
       this.$store.state.item = obj;
     },
     setPickLists: function setPickLists() {
@@ -3856,7 +3857,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.transacaoDetalhes = {
           mensagem: 'ID do registro: ' + response.data.id
         };
-        _this3.nomeProduto = '', _this3.arquivoImagem = [], _this3.qtdEstoque = '', _this3.qtdReposicao = '', _this3.dataValidade = '', _this3.precoUnitario = '', _this3.tipoId = '', _this3.fornecedorId = '', _this3.produtos = [], _this3.fornecedores = [], _this3.tipos = [], _this3.carregarLista();
+        _this3.nomeProduto = '', _this3.arquivoImagem = '', _this3.qtdEstoque = '', _this3.qtdReposicao = '', _this3.dataValidade = '', _this3.precoUnitario = '', _this3.tipoId = '', _this3.fornecedorId = '', _this3.produtos = [], _this3.fornecedores = [], _this3.tipos = [], _this3.carregarLista();
       })["catch"](function (errors) {
         _this3.transacaoStatus = 'erro';
         _this3.transacaoDetalhes = {
@@ -40464,7 +40465,9 @@ var staticRenderFns = [
       _c("div", { staticClass: "row justify-content-center" }, [
         _c("div", { staticClass: "col-md-8" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Bem-vindo")]),
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v(".: Fornecedores")
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("p", [_vm._v("Em construção")])
@@ -40596,7 +40599,7 @@ var render = function() {
                 },
                 on: {
                   click: function($event) {
-                    return _vm.setPickLists()
+                    _vm.setStore(""), _vm.setPickLists()
                   }
                 }
               },
@@ -41216,7 +41219,7 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         readonly: ""
                       },
-                      domProps: { value: _vm.$store.state.item.tipo }
+                      domProps: { value: _vm.$store.state.item.nome_tipo }
                     })
                   ]),
                   _vm._v(" "),
@@ -41232,14 +41235,9 @@ var render = function() {
                         "aria-describedby": "emailHelp",
                         readonly: ""
                       },
-                      domProps: { value: _vm.$store.state.item.fornecedor }
+                      domProps: { value: _vm.$store.state.item.nome_fornecedor }
                     })
-                  ]),
-                  _vm._v(
-                    "\n                                \n                                " +
-                      _vm._s(_vm.$store.state.item.nome_fornecedor) +
-                      "\n\n                                \n\n                        "
-                  )
+                  ])
                 ]),
                 _vm._v(" "),
                 _vm._m(3)

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+
 
 
 class ProdutoController extends Controller
@@ -21,7 +23,15 @@ class ProdutoController extends Controller
     {
 
         // produtos relacionados com fornecedores e tipos
-        $produtos = $this->produto->with('fornecedor', 'tipo')->get();
+        $produtos = DB::table('produtos')
+            ->join('fornecedores', 
+                'produtos.fornecedor_id', '=', 'fornecedores.id')
+            ->join('tipos', 
+                'produtos.tipo_id', '=', 'tipos.id')
+            ->select('produtos.id', 'nome_produto', 'imagem', 'qtd_estoque', 'qtd_reposicao', 'data_validade', 'preco_unitario', 'tipo_id', 'fornecedor_id', 'nome_fornecedor', 'nome_tipo')
+            ->orderBy('produtos.id', 'asc')
+            ->get();
+
 
         return response()->json($produtos, 200);
 

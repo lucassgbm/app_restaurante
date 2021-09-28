@@ -9,7 +9,7 @@
                     <div class="card-body">
                         {{ $store.state.teste }}
                         <!-- botão para ativar o modal para novo registro -->
-                        <button type="button" class="btn btn-success float-left mb-2"  data-toggle="modal" data-target="#modalCadastrarProduto" @click="setPickLists()">Cadastrar</button>
+                        <button type="button" class="btn btn-success float-left mb-2"  data-toggle="modal" data-target="#modalCadastrarProduto" @click="setStore(''), setPickLists()">Cadastrar</button>
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -173,14 +173,14 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Tipo</label>
-                                        <input type="text" class="form-control" :value="$store.state.item.tipo" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.nome_tipo" aria-describedby="emailHelp" readonly>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Fornecedor</label>
-                                        <input type="text" class="form-control" :value="$store.state.item.fornecedor" aria-describedby="emailHelp" readonly>
+                                        <input type="text" class="form-control" :value="$store.state.item.nome_fornecedor" aria-describedby="emailHelp" readonly>
                                     </div>
                                     
-                                    {{$store.state.item.nome_fornecedor}}
+                                    <!-- {{$store.state.item.nome_fornecedor}} -->
 
                                     
 
@@ -346,6 +346,8 @@
                 this.$store.state.transacao.status = ''
                 this.$store.state.transacao.mensagem = ''
                 this.$store.state.transacao.dados = ''
+                this.transacaoStatus = '',
+                this.transacaoDetalhes = ''
 
                 this.$store.state.item = obj
             },
@@ -402,7 +404,7 @@
                             mensagem: 'ID do registro: '+response.data.id
                         }
                         this.nomeProduto = '',
-                        this.arquivoImagem = [],
+                        this.arquivoImagem = '',
                         this.qtdEstoque = '',
                         this.qtdReposicao = '',
                         this.dataValidade = '',

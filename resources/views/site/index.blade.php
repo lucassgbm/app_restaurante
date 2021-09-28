@@ -82,10 +82,19 @@
                             
                         </ul>
                         <ul class="nav">
+                            {{-- busca --}}
+                                <li class="nav-item">
+                                    <input class="form-control form-control-sm input-search" type="text" placeholder="" aria-label=".form-control-sm">
+                                </li>
+
+                                <li class="nav-item"><a href="#" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a>
+                                </li>
+                            {{-- Fim - busca --}}
                             <li class="nav-item"><a href="#" class="nav-link">Ajuda</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="{{ url('/login') }}" class="nav-link">
                                     <button type="button" class="btn btn-outline-danger">Começar</button>
                                 </a>
                             </li>
@@ -109,7 +118,7 @@
                     <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                         <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Sobre o SiteDemo</button>
-                        <button type="button" class="btn btn-outline-secondary btn-lg px-4">Começar</button>
+                        <a href="{{ url('/login') }}"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Começar</button></a>
                     </div>
                     </div>
                 </div>
