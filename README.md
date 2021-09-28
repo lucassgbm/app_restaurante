@@ -10,7 +10,7 @@
 ## Instalação
 
 - Após fazer o checkout do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome db_lucas_28092021.sql
-- renomear o arquivo .env-example para .env (verificar de acordo com as configurações do seu banco)
+- renomear o arquivo .env-example para .env (verificar as configurações de acordo com o seu mysql)
 - rodar os comandos (na raiz do projeto): composer install
 - Criar link simbólico para o upload de arquivos: php artisan storage:link
 - rodar o comando: npm install
