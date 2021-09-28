@@ -9,18 +9,18 @@
 
 ## Instalação
 
-- Após fazer o checkout do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome dump_teste.sql
+- Após fazer o checkout do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome db_lucas_28092021.sql
+- renomear o arquivo .env-example para .env (verificar as configurações de acordo com o seu mysql)
+- rodar os comandos (na raiz do projeto): composer install
 - Criar link simbólico para o upload de arquivos: php artisan storage:link
-- renomear o arquivo .env-example para .env (verificar de acordo com as configurações do seu banco)
-- rodar o comando: composer install
 - rodar o comando: npm install
-- na raiz do projeto, executar o comando: php artisan serve
-- também na raiz do projeto, executar o comando: npm run dev
+- executar o comando: php artisan serve
+- executar o comando: npm run dev
 
 ## Frontend
 
 - na raiz do projeto, rodar o comando: json-server --watch db.json
-o desenvolvimento para o teste frontend está disponível pela url: http://localhost:8000/
+- o desenvolvimento para o teste frontend está disponível pela url: http://localhost:8000/
 
 
 ## Backend
