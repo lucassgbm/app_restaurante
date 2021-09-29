@@ -1,9 +1,0 @@
-.logo_header img {
-    width: 100px;
-  }
-
-  @media (min-width: 576px) {
-    .container-sm, .container {
-      max-width: 90%;
-    }
-  }
