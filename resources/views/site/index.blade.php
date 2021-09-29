@@ -22,34 +22,7 @@
     <title>Site Demo</title>
   </head>
 
-    {{-- SWIPER --}}
-  <link  rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script>
-        const swiper = new Swiper('.swiper', {
-            // Optional parameters
-            direction: 'vertical',
-            loop: true,
-
-            // If we need pagination
-            pagination: {
-                el: '.swiper-pagination',
-            },
-
-            // Navigation arrows
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-
-            // And if we need scrollbar
-            scrollbar: {
-                el: '.swiper-scrollbar',
-            },
-            });
-    </script>
+ 
   <body>
 
   <div id="app">
@@ -65,43 +38,54 @@
     -->
 
     <!-- Slider main container -->
-    <section class="swiper">
+    <section class="header">
         <header class="header-site">
             <div class="container">
                 
-                <nav class="py-2 mt-2">
-                    <div class="container d-flex flex-wrap">
-                        <div class="logo logo_header">
-                            <img src="{{ asset('img/logo_site_header.png')}}">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <div class="col">
+
+                    <div class="logo logo_header">
+                        <img src="{{ asset('img/logo_site_header.png')}}">
+                    </div>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                        <div class="col">
+                            <ul class="navbar-nav">
+                            
+                                <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Preços</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Desenvolvedores</a></li>
+                                
+                            </ul>
                         </div>
-                        <ul class="nav me-auto">
-                            
-                            <li class="nav-item"><a href="#" class="nav-link">Sobre</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Preços</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Desenvolvedores</a></li>
-                            
-                        </ul>
-                        <ul class="nav">
-                            {{-- busca --}}
+                        <div class="col">
+                            <ul class="navbar-nav">
+                                {{-- busca --}}
+                                    <li class="nav-item">
+                                        <input class="form-control form-control-sm input-search" type="text" placeholder="" aria-label=".form-control-sm">
+                                    </li>
+
+                                    <li class="nav-item"><a href="#" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a>
+                                    </li>
+                                {{-- Fim - busca --}}
+                                <li class="nav-item"><a href="#" class="nav-link">Ajuda</a></li>
+                                <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
                                 <li class="nav-item">
-                                    <input class="form-control form-control-sm input-search" type="text" placeholder="" aria-label=".form-control-sm">
+                                    <a href="{{ url('/login') }}" class="nav-link">
+                                        <button type="button" class="btn btn-outline-danger">Começar</button>
+                                    </a>
                                 </li>
-
-                                <li class="nav-item"><a href="#" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg></a>
-                                </li>
-                            {{-- Fim - busca --}}
-                            <li class="nav-item"><a href="#" class="nav-link">Ajuda</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Contato</a></li>
-                            <li class="nav-item">
-                                <a href="{{ url('/login') }}" class="nav-link">
-                                    <button type="button" class="btn btn-outline-danger">Começar</button>
-                                </a>
-                            </li>
-                            
+                                
 
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
                 </nav>
             </div>
@@ -124,8 +108,7 @@
                 </div>
             
             </div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
+      
         </div>
         {{-- <!-- If we need pagination -->
         <div class="swiper-pagination"></div>

@@ -1,4 +1,5 @@
 body {
+  margin-top: 0;
     font-family: 'Roboto', sans-serif;
     font-weight:100;
 }
@@ -29,7 +30,7 @@ body {
 
 } */
 
-.swiper {
+.header {
     /* font-family: 'Raleway', sans-serif ; */
 
   width: 100%;
@@ -40,12 +41,14 @@ body {
   background-position: center center;
   color: #ffffff;
 }
-  
-.swiper .nav-item a {
+
+
+.header col li a{
   color: #ffffff;
       /* font-family: 'Roboto', sans-serif ; */
 
 }
+
 
 /* Botões */
 .btn-primary {

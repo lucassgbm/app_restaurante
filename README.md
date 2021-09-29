@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+- Segue link para visualizar o projeto online:
+**http://testeezoom.herokuapp.com/**
+
+
 ## Instalação
 
 - Após fazer o checkout do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome db_lucas_28092021.sql
@@ -26,8 +30,8 @@
 ## Backend
 
 o desenvolvimento para o teste backend está disponível em: http://localhost:8000/login
-- **login: admin@teste.com**
-- **senha: 12345678**
+**login: admin@teste.com**
+**senha: 12345678**
 
 o crud pode ser visualizado em: http://localhost:8000/produtos
 
