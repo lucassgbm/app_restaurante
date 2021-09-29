@@ -8,7 +8,7 @@
 </p>
 
 - Segue link para visualizar o projeto online:
--**http://testeezoom.herokuapp.com/**
+- **http://testeezoom.herokuapp.com/**
 
 
 ## Instalação
@@ -30,8 +30,8 @@
 ## Backend
 
 o desenvolvimento para o teste backend está disponível em: http://localhost:8000/login
--**login: admin@teste.com**
--**senha: 12345678**
+- **login: admin@teste.com**
+- **senha: 12345678**
 
 o crud pode ser visualizado em: http://localhost:8000/produtos
 
