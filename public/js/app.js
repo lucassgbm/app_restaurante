@@ -3778,7 +3778,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {},
   data: function data() {
     return {
-      urlBase: 'http://localhost:8000/api/',
+      urlBase: location.protocol + '//' + location.host + '/api/',
       nomeProduto: '',
       arquivoImagem: [],
       qtdEstoque: '',
