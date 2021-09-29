@@ -10,12 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&family=Roboto:wght@100:900&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap - CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     {{-- <link rel="stylesheet" type="text/css" href="../css/app.css" media="screen" /> --}}
     <link rel="stylesheet" type="text/css" href="../css/site.css" media="screen" />
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- Javascript -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
 
 
@@ -26,16 +27,6 @@
   <body>
 
   <div id="app">
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-    -->
 
     <!-- Slider main container -->
     <section class="header">
@@ -65,7 +56,7 @@
                         </div>
                         <div class="col">
                             <ul class="navbar-nav">
-                                {{-- busca --}}
+                                {{-- Busca --}}
                                     <li class="nav-item">
                                         <input class="form-control form-control-sm input-search" type="text" placeholder="" aria-label=".form-control-sm">
                                     </li>
@@ -82,8 +73,6 @@
                                     </a>
                                 </li>
                                 
-
-
                             </ul>
                         </div>
                     </div>
@@ -91,34 +80,11 @@
             </div>
             
         </header>
-        <!-- Additional required wrapper -->
         <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
-            
-                <div class="px-4 py-5 my-5 mt-10 text-center">
-                    <h1 class="display-5 fw-bold">Bem vindo ao SiteDemo</h1>
-                    <div class="col-lg-6 mx-auto">
-                    <p class="lead mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Sobre o SiteDemo</button>
-                        <a href="{{ url('/login') }}"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Começar</button></a>
-                    </div>
-                    </div>
-                </div>
-            
-            </div>
+            {{-- componente para o Slider --}}
+            <slider-component></slider-component>
       
         </div>
-        {{-- <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
-
-        <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-
-        <!-- If we need scrollbar -->
-        <div class="swiper-scrollbar"></div> --}}
     </section>
     <section class="clientes">
         <div class="container">

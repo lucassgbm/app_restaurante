@@ -45,7 +45,7 @@ const store = new Vuex.Store({
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 // componentes para o site
-Vue.component('swiper-component', require('./components/site/Swiper.vue').default);
+Vue.component('slider-component', require('./components/site/Slider.vue').default);
 Vue.component('servicos-component', require('./components/site/Servicos.vue').default);
 Vue.component('clientes-component', require('./components/site/Clientes.vue').default);
 
