@@ -17,22 +17,22 @@
         },
         data(){
             return {
-                urlBase: 'http://localhost:3000/clients',
+                urlBase: 'js/db.json',
                 clientes: [],
             }
         },
         methods: {
             carregarLista(){
-                axios.get(this.urlBase)
-                    .then(response => {
-                        this.clientes = response.data
-                        console(response.data);
 
-                    })
-                    .catch(errors => {
-                        // console.log(errors)
-
-                    })
+                fetch(this.urlBase,{
+                    headers : { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => (this.clientes = data.clients))
+                .catch(console.error);
             }
         },
     }

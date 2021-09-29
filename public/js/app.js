@@ -3986,7 +3986,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      urlBase: 'http://localhost:3000/clients',
+      urlBase: 'js/db.json',
       clientes: []
     };
   },
@@ -3994,11 +3994,16 @@ __webpack_require__.r(__webpack_exports__);
     carregarLista: function carregarLista() {
       var _this = this;
 
-      axios.get(this.urlBase).then(function (response) {
-        _this.clientes = response.data;
-        console(response.data);
-      })["catch"](function (errors) {// console.log(errors)
-      });
+      fetch(this.urlBase, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        return _this.clientes = data.clients;
+      })["catch"](console.error);
     }
   }
 });
@@ -4048,7 +4053,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      urlBase: 'http://localhost:3000/services',
+      urlBase: 'js/db.json',
       servicos: [],
       darkBox: true,
       classBox: 'col box dark-box'
@@ -4058,11 +4063,16 @@ __webpack_require__.r(__webpack_exports__);
     carregarLista: function carregarLista() {
       var _this = this;
 
-      axios.get(this.urlBase).then(function (response) {
-        _this.servicos = response.data;
-        console(response.data);
-      })["catch"](function (errors) {// console.log(errors)
-      });
+      fetch(this.urlBase, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (data) {
+        return _this.servicos = data.services;
+      })["catch"](console.error);
     }
   }
 });

@@ -31,7 +31,7 @@
         },
         data(){
             return {
-                urlBase: 'http://localhost:3000/services',
+                urlBase: 'js/db.json',
                 servicos: [],
                 darkBox: true,
                 classBox: 'col box dark-box'
@@ -39,16 +39,16 @@
         },
         methods: {
             carregarLista(){
-                axios.get(this.urlBase)
-                    .then(response => {
-                        this.servicos = response.data
-                        console(response.data);
 
-                    })
-                    .catch(errors => {
-                        // console.log(errors)
-
-                    })
+                fetch(this.urlBase,{
+                    headers : { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => (this.servicos = data.services))
+                .catch(console.error);
             }
         },
     }
