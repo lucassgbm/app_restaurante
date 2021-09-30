@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="container">
+                
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col">
+
                 <!-- inicío do card de listagem dos produtos -->
                 <div class="card">
 
@@ -11,6 +13,7 @@
                     <div class="card-body">
                         <!-- botão para ativar o modal para novo registro -->
                         <a href="{{ route('produtos.create') }}"><button type="button" class="btn btn-success float-left mb-2">Cadastrar</button></a>
+                            
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -82,4 +85,6 @@
                     
                 </div>
                 <!-- fim do card de listagem dos produtos -->
+            </div>
+        </div>
 @endsection
