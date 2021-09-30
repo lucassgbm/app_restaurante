@@ -13,7 +13,7 @@
 
 ## Instalação
 
-- Após fazer o checkout do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome db_lucas_28092021.sql
+- Após fazer o clone do projeto, rodar o dump do banco de dados localizado na raiz do projeto de nome db_lucas_28092021.sql
 - renomear o arquivo .env-example para .env (verificar as configurações de acordo com o seu mysql)
 - rodar os comandos (na raiz do projeto): composer install
 - Criar link simbólico para o upload de arquivos: php artisan storage:link
@@ -23,9 +23,7 @@
 
 ## Frontend
 
-- na raiz do projeto, rodar o comando: json-server --watch db.json
 - o desenvolvimento para o teste frontend está disponível pela url: http://localhost:8000/
-
 
 ## Backend
 
@@ -33,5 +31,10 @@ o desenvolvimento para o teste backend está disponível em: http://localhost:80
 - **login: admin@teste.com**
 - **senha: 12345678**
 
-o crud pode ser visualizado em: http://localhost:8000/produtos
+o crud pode ser visualizado no link: http://localhost:8000/produtos
+
+## Banco de dados
+
+- na raiz do projeto está o modelo do banco de dados: db_modelo.mwb
+- também disponibilizei um print do modelo do banco de dados: modelo do banco de dados.png
 
