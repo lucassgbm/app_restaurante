@@ -2,8 +2,14 @@
     width: 100px;
   }
 
-  @media (min-width: 576px) {
-    .container-sm, .container {
-      max-width: 90%;
-    }
+@media (min-width: 576px) {
+  .container-sm, .container {
+    max-width: 90%;
   }
+}
+
+@media (max-width: 1250px) {
+  .card-body {
+    overflow:auto;
+  }
+}
