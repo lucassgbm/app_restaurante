@@ -8,7 +8,7 @@
 </p>
 
 - Segue link para visualizar o projeto online:
-- **http://testeezoom.herokuapp.com/**
+- **https://testeezoom.herokuapp.com/**
 
 
 ## Instalação
