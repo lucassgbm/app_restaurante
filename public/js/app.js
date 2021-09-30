@@ -3988,7 +3988,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       // url onde o db.json está colalizado
-      url: 'https://testeezoom.herokuapp.com/js/db.json',
+      urlBase: 'js/db.json',
+      nameHost: location.protocol + '//' + location.host,
       clientes: []
     };
   },
@@ -3996,7 +3997,7 @@ __webpack_require__.r(__webpack_exports__);
     carregarLista: function carregarLista() {
       var _this = this;
 
-      fetch(url, {
+      fetch(this.nameHost + '/' + this.urlBase, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -4056,7 +4057,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       // url onde o db.json está colalizado
-      url: 'https://testeezoom.herokuapp.com/js/db.json',
+      urlBase: 'js/db.json',
+      nameHost: location.protocol + '//' + location.host,
       servicos: [],
       darkBox: true,
       classBox: 'col box dark-box'
@@ -4066,7 +4068,7 @@ __webpack_require__.r(__webpack_exports__);
     carregarLista: function carregarLista() {
       var _this = this;
 
-      fetch(url, {
+      fetch(this.nameHost + '/' + this.urlBase, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
