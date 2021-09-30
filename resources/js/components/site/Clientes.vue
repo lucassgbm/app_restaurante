@@ -19,15 +19,14 @@
         data(){
             return {
                 // url onde o db.json está colalizado
-                urlBase: 'js/db.json',
-                nameHost: location.protocol+'//'+location.host,
+                url: 'https://testeezoom.herokuapp.com/js/db.json',
                 clientes: [],
             }
         },
         methods: {
             carregarLista(){
 
-                fetch(this.nameHost+'/'+this.urlBase,{
+                fetch(url,{
                     headers : { 
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
