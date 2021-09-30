@@ -28,7 +28,7 @@
 ## Backend
 
 o desenvolvimento para o teste backend está disponível em: http://localhost:8000/login
-- **login: admin@teste.com**
+- **login: teste@admin.com**
 - **senha: 12345678**
 
 o crud pode ser visualizado no link: http://localhost:8000/produtos
