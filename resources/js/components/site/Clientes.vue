@@ -31,7 +31,7 @@
                     headers : { 
                         'Content-Type': 'application/json',
                         'Accept': 'application/json',
-                        'Access-Control-Allow-Origin': 'https://testeezoom.herokuapp.com/',
+                        'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Headers': 'Accept',
                         'Access-Control-Allow-Methods': 'POST, GET'
                     },
