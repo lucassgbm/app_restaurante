@@ -163,5 +163,9 @@ body {
    {
     background-image: none;
    }
+   .newsletter input[type='text'] {
+      width: 100%;
+
+   }
 }
 

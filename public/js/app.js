@@ -3390,8 +3390,11 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Accept',
+          'Access-Control-Allow-Methods': 'POST, GET'
+        },
+        mode: "no-cors"
       }).then(function (response) {
         return response.json();
       }).then(function (data) {
@@ -3462,8 +3465,11 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        }
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Accept',
+          'Access-Control-Allow-Methods': 'POST, GET'
+        },
+        mode: "no-cors"
       }).then(function (response) {
         return response.json();
       }).then(function (data) {

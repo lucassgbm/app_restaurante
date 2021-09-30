@@ -54,16 +54,16 @@
 
 .slide {
   display: block;
-  height: 792px;
+  /* height: 792px; */
   -o-object-fit: cover;
      object-fit: cover;
   /* width: 100%; */
 }
 
-@media (max-width: 992px)
+@media (min-width: 992px)
 {
   .slide
    {
-    height: auto;
+    height: 792px;
    }
 }
