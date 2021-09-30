@@ -39,7 +39,7 @@
                     <div class="col">
 
                     <div class="logo logo_header">
-                        <img src="{{ asset('img/logo_site_header.png')}}">
+                        <a href="#"><img src="{{ asset('img/logo_site_header.png')}}"></a>
                     </div>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,6 +88,7 @@
       
         </div>
     </section>
+    {{-- fim - header --}}
     <section class="clientes">
         <div class="container">
 
@@ -96,6 +97,7 @@
             
         </div>
     </section>
+    {{-- fim - clientes --}}
     <section class="blank">
     </section>
     <section class="servicos">
@@ -108,6 +110,7 @@
     </section>
     <section class="blank">
     </section>
+    {{-- fim - serviços --}}
     <section class="atendimento_cliente">
         <div class="container">
             <div class="row flex-lg-row align-items-center g-5 py-5">
@@ -125,6 +128,7 @@
 
         </div>
     </section>
+    {{-- fim - atendimento_cliente --}}
     <section class="newsletter">
         <div class="px-4 py-5 my-5 text-center">
             <h4 class="display-7 fw-bold">Newsletter</h4>
@@ -138,13 +142,14 @@
             </div>
         </div>
     </section>
+    {{-- fim - newsletter --}}
     <section class="footer">
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4">
                 <div class="col flex-wrap">
                 
                     <div class="logo logo_footer">
-                        <img src="{{ asset('img/logo_site_footer.png')}}">
+                        <a href="#"><img src="{{ asset('img/logo_site_footer.png')}}"></a>
                     </div>
                 </div>
                 <div class="col flex-wrap">
@@ -172,6 +177,7 @@
             </footer>
         </div>
     </section>
+    {{-- fim - footer --}}
         
     </div>
   </div> 
