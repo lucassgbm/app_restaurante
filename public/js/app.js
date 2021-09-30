@@ -3997,7 +3997,7 @@ __webpack_require__.r(__webpack_exports__);
     carregarLista: function carregarLista() {
       var _this = this;
 
-      fetch(this.urlBase, {
+      fetch(this.nameHost + '/' + this.urlBase, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

@@ -27,7 +27,7 @@
         methods: {
             carregarLista(){
 
-                fetch(this.urlBase,{
+                fetch(this.nameHost+'/'+this.urlBase,{
                     headers : { 
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
