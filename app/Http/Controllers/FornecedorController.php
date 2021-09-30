@@ -20,7 +20,8 @@ class FornecedorController extends Controller
         // todos os fornecedores
         $fornecedores = Fornecedor::all();
 
-        return response()->json($fornecedores, 200);
+        return view('app.fornecedores.index', ['fornecedores' => $fornecedores]);
+
     }
 
     /**

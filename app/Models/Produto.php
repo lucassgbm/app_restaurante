@@ -29,7 +29,7 @@ class Produto extends Model
             'imagem' => 'required|file|mimes:png,jpeg,jpg',
             'qtd_estoque' => 'required|numeric',
             'qtd_reposicao' => 'required|numeric',
-            'data_validade' => 'required|date',
+            'data_validade' => 'required|date_format:d/m/Y',
             'preco_unitario' => 'required|numeric',
             'tipo_id' => 'required',
             'fornecedor_id' => 'required',

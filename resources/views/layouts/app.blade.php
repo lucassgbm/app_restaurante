@@ -37,11 +37,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('produtos') }}">Produtos</a>
+                            <a class="nav-link" href="{{ route('produtos.index') }}">Produtos</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('fornecedores') }}">Fornecedores</a>
+                            <a class="nav-link" href="{{ route('fornecedores.index') }}">Fornecedores</a>
                         </li>
 
                         

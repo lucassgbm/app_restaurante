@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
+use App\Models\Tipo;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -21,19 +23,10 @@ class ProdutoController extends Controller
      */
     public function index()
     {
+        // exibir todos os produtos relacionados com fornecedores e tipos
+        $produtos = $this->produto->with('fornecedor')->with('tipo')->get();
 
-        // produtos relacionados com fornecedores e tipos
-        $produtos = DB::table('produtos')
-            ->join('fornecedores', 
-                'produtos.fornecedor_id', '=', 'fornecedores.id')
-            ->join('tipos', 
-                'produtos.tipo_id', '=', 'tipos.id')
-            ->select('produtos.id', 'nome_produto', 'imagem', 'qtd_estoque', 'qtd_reposicao', 'data_validade', 'preco_unitario', 'tipo_id', 'fornecedor_id', 'nome_fornecedor', 'nome_tipo')
-            ->orderBy('produtos.id', 'asc')
-            ->get();
-
-
-        return response()->json($produtos, 200);
+        return view('app.produtos.index', ['produtos' => $produtos]);
 
     }
 
@@ -44,7 +37,11 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        $fornecedores = Fornecedor::all();
+        $tipos = Tipo::all();
+
+        return view('app.produtos.cadastrar', ['fornecedores' => $fornecedores, 'tipos' => $tipos]);
+
     }
 
     /**
@@ -55,11 +52,11 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         // validação de campos
         $request->validate($this->produto->rules(), $this->produto->feedback());
-
+        
         $imagem = $request->file('imagem');
+
         $imagem_urn = $imagem->store('imagens/produtos', 'public');
 
         $produto = $this->produto->create([
@@ -67,14 +64,27 @@ class ProdutoController extends Controller
             'imagem' => $imagem_urn,
             'qtd_estoque' => $request->qtd_estoque,
             'qtd_reposicao' => $request->qtd_reposicao,
-            'data_validade' => $request->data_validade,
+            'data_validade' => date('Y-m-d', strtotime($request->data_validade)),
             'preco_unitario' => $request->preco_unitario,
             'tipo_id' => $request->tipo_id,
             'fornecedor_id' => $request->fornecedor_id
 
         ]);
-        
-        return response()->json($produto, 201);
+
+        // verificar se o produto foi cadastrado
+        if($produto->id){
+
+            $msg = 'O produto foi cadastrado com sucesso. ID: '.$produto->id;
+
+        }else {
+
+            $msg = 'Ocorreu um erro ao salvar o produto. Tente novamente.';
+            
+        }
+
+        return view('app.produtos.msg', ['msg' => json_encode($msg)]);
+
+
     }
 
     /**
@@ -85,7 +95,9 @@ class ProdutoController extends Controller
      */
     public function show(Produto $produto)
     {
-        //
+
+        return view('app.produtos.visualizar', ['produto' => $produto]);
+
     }
 
     /**
@@ -96,7 +108,12 @@ class ProdutoController extends Controller
      */
     public function edit(Produto $produto)
     {
-        //
+        $fornecedores = Fornecedor::all();
+        $tipos = Tipo::all();
+        
+
+        return view('app.produtos.editar', ['produto' => $produto, 'fornecedores' => $fornecedores, 'tipos' => $tipos]);
+
     }
 
     /**
@@ -117,8 +134,6 @@ class ProdutoController extends Controller
         if($request->method() === 'PATCH'){
                 
             $regrasDinamicas = array();
-
-            $teste = '';
 
             #percorrendo todas as regras definidas no Model
             foreach ($produto->rules() as $input => $regra){
@@ -144,6 +159,9 @@ class ProdutoController extends Controller
         // preenche o objeto produto com todos os dados passados no request
         $produto->fill($request->all());
 
+        // ajustar formato da data para ser salvo no banco de dados
+        $produto->data_validade = date('Y-m-d', strtotime($request->data_validade));
+
         // verifica se uma nova imagem foi encaminhada na requisição
         if($request->file('imagem') != ''){
 
@@ -157,7 +175,20 @@ class ProdutoController extends Controller
 
         $produto->save();
 
-        return response()->json($produto, 200);
+        // verificar se o produto foi cadastrado
+        if($produto->id){
+
+            $msg = 'O produto foi editado com sucesso. ID: '.$produto->id;
+            
+
+        }else {
+
+            $msg = 'Ocorreu um erro ao editar o produto. Tente novamente.';
+            
+        }
+
+        return view('app.produtos.msg', ['msg' => json_encode($msg)]);
+
     }
 
     /**
@@ -171,13 +202,20 @@ class ProdutoController extends Controller
         $produto = $this->produto->find($id);
 
         if($produto === null){
-            return response()->json(['erro' => 'O recurso solicitado não existe'],404);
+            $msg = 'O recurso solicitado não existe';
+        }else {
+
+            // remove o arquivo
+            Storage::disk('public')->delete($produto->imagem);
+            
+            $produto->delete();
+
+            $msg = 'O produto foi removido com sucesso';
         }
 
-        // remove o arquivo
-        Storage::disk('public')->delete($produto->imagem);
+        return view('app.produtos.msg', ['msg' => json_encode($msg)]);
 
-        $produto->delete();
-        return response()->json(['msg' => 'O produto foi removido com sucesso'], 200);
     }
+
+
 }

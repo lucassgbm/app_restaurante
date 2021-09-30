@@ -52,42 +52,11 @@ Vue.component('clientes-component', require('./components/site/Clientes.vue').de
 // componentes para o app
 Vue.component('home-component', require('./components/Home.vue').default);
 
-Vue.component('produtos-component', require('./components/produtos/Produtos.vue').default);
-Vue.component('fornecedores-component', require('./components/fornecedores/Fornecedores.vue').default);
-
-// componentes produto crud
-Vue.component('cadastrar-produto-component', require('./components/produtos/Cadastrar.vue').default);
-Vue.component('visualizar-produto-component', require('./components/produtos/Visualizar.vue').default);
-Vue.component('editar-produto-component', require('./components/produtos/Editar.vue').default);
-Vue.component('excluir-produto-component', require('./components/produtos/Excluir.vue').default);
-
-// alertas
-Vue.component('alert-component', require('./components/Alerts.vue').default);
-
-
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.filter('formatarData', function(d) {
-
-    // verifica se foi passado um parâmetro
-    if(!d) return ''
-
-    d = d.split(' ')
-    let data = d[0]
-    let hora = d[1]
-
-    data = data.split('-')
-
-    // reorganizar data
-    data = data[2]+'/'+data[1]+'/'+data[0];
-
-    return data;
-});
 
 
 const app = new Vue({

@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\FornecedorController;
+
 
 // Route::resource('produto', ProdutoController::class);
 
@@ -24,9 +27,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('produtos', function(){
-    return view('app.produtos');
-})->name('produtos')->middleware('auth');
+// Route::get('produtos', function(){
+//     return view('app.produtos');
+// })->name('produtos')->middleware('auth');
+
+
 
 Route::get('fornecedores', function(){
     return view('app.fornecedores');
@@ -34,7 +39,11 @@ Route::get('fornecedores', function(){
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('produto', [App\Http\Controllers\ProdutoController::class, 'index'])->name('produto');
+// Route::post('produtos', [App\Http\Controllers\ProdutoController::class, 'index'])->name('produtos');
+// Route::post('produtos/create', [App\Http\Controllers\ProdutoController::class, 'create'])->name('produtos.cadastrar');
+
+Route::resource('produtos', ProdutoController::class)->middleware('auth');
+Route::resource('fornecedores', FornecedorController::class)->middleware('auth');
 
 // Route::get('fornecedor', [App\Http\Controllers\FornecedorController::class, 'index'])->name('fornecedor');
 
