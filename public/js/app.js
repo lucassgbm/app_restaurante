@@ -3389,7 +3389,8 @@ __webpack_require__.r(__webpack_exports__);
       fetch(this.nameHost + '/' + this.urlBase, {
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         }
       }).then(function (response) {
         return response.json();
@@ -3460,7 +3461,8 @@ __webpack_require__.r(__webpack_exports__);
       fetch(this.nameHost + '/' + this.urlBase, {
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Access-Control-Allow-Origin': '*'
         }
       }).then(function (response) {
         return response.json();
