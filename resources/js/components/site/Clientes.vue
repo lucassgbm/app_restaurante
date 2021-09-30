@@ -34,7 +34,8 @@
                         'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Headers': 'Accept',
                         'Access-Control-Allow-Methods': 'POST, GET'
-                    }
+                    },
+                    mode: "no-cors",
                 })
                 .then(response => response.json())
                 .then(data => (this.clientes = data.clients))
