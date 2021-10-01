@@ -6,41 +6,10 @@
         <div class="row justify-content-center">
             <div class="col">
 
-                <!-- inicío do card de busca e exportação -->
-                <div class="card">
-                    <div class="card-body">
-                        {{-- início do formulário de busca --}}
-                        <form method="get" action="{{ route('produtos.index') }}">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <input type="text" class="form-control" id="busca" name="busca" placeholder="Buscar">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
-                                </div>
-
-                                <div class="col-auto">
-                                    <a href="#"><button type="button" class="btn btn-primary">Exportar para XLS</i></button></a>
-                                    <a href="#"><button type="button" class="btn btn-primary">Exportar para CSV</i></button></a>
-                                </div>
-                            </div>
-                        </form>
-                        {{-- fim do formulário de busca --}}
-
-                    </div>
-                     
-                </div>
-                {{-- fim do card de busca de exportação --}}
-            </div>
-        </div>
-        <br>
-        <div class="row justify-content-center">
-            <div class="col">
-
                 <!-- inicío do card de listagem dos produtos -->
                 <div class="card">
 
-                    <div class="card-header">.: Lista de Produtos</div>
+                    <div class="card-header">.: Resultado da busca</div>
                     <div class="card-body">
                         <!-- botão para ativar o modal para novo registro -->
                         <a href="{{ route('produtos.create') }}"><button type="button" class="btn btn-success float-left mb-2">Cadastrar</button></a>
@@ -92,26 +61,6 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-                    <div class="card-footer">
-                        <!-- Início - Paginação -->
-                        <nav aria-label="...">
-                            <ul class="pagination">
-                                <li class="page-item disabled">
-                                <a class="page-link">Anterior</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active" aria-current="page">
-                                <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                <a class="page-link" href="#">Próxima</a>
-                                </li>
-                            </ul>
-                        </nav>
-                        <!-- Fim - Paginação -->
-                        
                     </div>
                     
                 </div>

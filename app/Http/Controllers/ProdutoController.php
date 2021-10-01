@@ -21,10 +21,19 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // exibir todos os produtos relacionados com fornecedores e tipos
-        $produtos = $this->produto->with('fornecedor')->with('tipo')->get();
+        // verificar se o campo de busca foi
+        if($request->busca != ''){
+
+            // exibir todos os produtos relacionados com fornecedores e tipos pelo critério passado
+            $produtos = $this->produto->with('fornecedor')->with('tipo')->where('nome_produto', 'like', '%'.$request->busca.'%')->get();
+            
+        }else {
+
+            // exibir todos os produtos relacionados com fornecedores e tipos
+            $produtos = $this->produto->with('fornecedor')->with('tipo')->get();
+        }
 
         return view('app.produtos.index', ['produtos' => $produtos]);
 
@@ -214,6 +223,12 @@ class ProdutoController extends Controller
         }
 
         return view('app.produtos.msg', ['msg' => json_encode($msg)]);
+
+    }
+
+    public function search($string){
+
+        echo $string; die;
 
     }
 

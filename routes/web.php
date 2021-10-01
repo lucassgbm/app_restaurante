@@ -40,7 +40,7 @@ Route::get('fornecedores', function(){
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::post('produtos', [App\Http\Controllers\ProdutoController::class, 'index'])->name('produtos');
-// Route::post('produtos/create', [App\Http\Controllers\ProdutoController::class, 'create'])->name('produtos.cadastrar');
+// Route::get('produtos/search/{search}', [App\Http\Controllers\ProdutoController::class, 'search'])->name('produtos.search');
 
 Route::resource('produtos', ProdutoController::class)->middleware('auth');
 Route::resource('fornecedores', FornecedorController::class)->middleware('auth');
