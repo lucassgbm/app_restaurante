@@ -67,11 +67,19 @@ body {
   font-weight:100;
 
 }
+
+.atendimento_cliente .btn-success:hover {
+  border-color: #ffffff;
+}
   
 .btn-primary:hover {
   background-color: transparent;
   border-color: #ffffff;
 
+}
+
+.atendimento_cliente .btn-primary:hover {
+  background-color: #009dd7;
 }
 
 .btn-outline-secondary {
@@ -100,6 +108,10 @@ body {
   background-color: #00baff;
   border-color: #00baff;
 }
+
+
+
+
 /* --- Fim - Botões --- */
 
 
@@ -136,6 +148,7 @@ body {
   background-position: center right;
 
 }
+
 
 .newsletter {
   width: 100%;
