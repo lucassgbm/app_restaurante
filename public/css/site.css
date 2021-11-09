@@ -14,11 +14,17 @@ body {
 }
 
 .input-search {
-  background-color: transparent;
+  background-color: #fff;
+  opacity: 7%;
+  border-radius: 0;
   border: none;
   padding: 0;
   margin-top: 5px;
-  color: #ffffff;
+}
+
+.input-search:focus {
+  opacity: 100%;
+  color: #131313;
 }
 
 

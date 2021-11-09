@@ -9,7 +9,7 @@
 
                     <div class="card-header">.: Cadastrar Produto</div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('produtos.store') }}" enctype="multipart/form-data">
+                        <form method="post" id="form_cadastro" action="{{ route('produtos.store') }}" enctype="multipart/form-data">
                             @csrf
                             
                             <div class="mb-3">

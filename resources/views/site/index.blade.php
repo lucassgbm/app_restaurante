@@ -156,7 +156,6 @@
                     <ul class="nav me-auto">
                             
                         
-                        <li class="ms-3"><a class="text-muted" href="#">Home</a></li>
                         <li class="ms-3"><a class="text-muted" href="#">Sobre</a></li>
                         <li class="ms-3"><a class="text-muted" href="#">Preços</a></li>
                         <li class="ms-3"><a class="text-muted" href="#">Desenvolvedores</a></li>
