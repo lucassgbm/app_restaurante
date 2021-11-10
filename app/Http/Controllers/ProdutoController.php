@@ -27,12 +27,12 @@ class ProdutoController extends Controller
         if($request->busca != ''){
 
             // exibir todos os produtos relacionados com fornecedores e tipos pelo critério passado
-            $produtos = $this->produto->with('fornecedor')->with('tipo')->where('nome_produto', 'like', '%'.$request->busca.'%')->get();
+            $produtos = $this->produto->with('fornecedor')->with('tipo')->where('nome_produto', 'like', '%'.$request->busca.'%')->paginate(5);
             
         }else {
 
             // exibir todos os produtos relacionados com fornecedores e tipos
-            $produtos = $this->produto->with('fornecedor')->with('tipo')->get();
+            $produtos = $this->produto->with('fornecedor')->with('tipo')->paginate(5);
         }
 
         return view('app.produtos.index', ['produtos' => $produtos]);
