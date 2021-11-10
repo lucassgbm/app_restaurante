@@ -92,12 +92,12 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{$produtos->links()}}
                     </div>
                     <div class="card-footer">
                         
-                        <p class="paginas">página {{$produtos->currentPage()}} de {{$produtos->lastPage()}}</p>
+                        <p class="paginas">página {{$produtos->currentPage()}} de {{$produtos->lastPage()}}</span>
                         <!-- Início - Paginação -->
-                        {{$produtos->links()}}
                         
                         <!-- Fim - Paginação -->
                         
